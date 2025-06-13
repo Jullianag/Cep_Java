@@ -2,6 +2,7 @@ package com.projeto.controllers;
 
 import com.projeto.dtos.CepDTO;
 import com.projeto.services.CepService;
+import com.projeto.services.exceptions.WebClientExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class CepController {
 
     @GetMapping("/{cep}")
     public Mono<ResponseEntity<CepDTO>> getCep(@PathVariable String cep) {
+
         return cepService.buscarCep(cep)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
