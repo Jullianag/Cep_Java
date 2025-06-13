@@ -1,8 +1,7 @@
 package com.projeto.services;
 
 import com.projeto.dtos.CepDTO;
-import com.projeto.repositories.CepRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.projeto.services.exceptions.WebClientExceptions;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -17,10 +16,17 @@ public class CepService {
     }
 
     public Mono<CepDTO> buscarCep(String cep) {
+
         return webClient
-                .get()
-                .uri("/{cep}/json", cep)
-                .retrieve()
-                .bodyToMono(CepDTO.class);
+                .get() // requisição HTTP
+                .uri("/{cep}/json", cep) // endpoint de destino
+                .retrieve() // executa a requisição e extrai a resposta
+                .onStatus(
+                        status -> status.is4xxClientError() || status.is5xxServerError(),
+                        response -> response
+                                .bodyToMono(String.class)
+                                .flatMap(errorBody -> Mono.error(new WebClientExceptions("Erro" )))
+                )
+                .bodyToMono(CepDTO.class); // converte para Mono<CepDTO>
     }
 }

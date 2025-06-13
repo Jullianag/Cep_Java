@@ -4,6 +4,7 @@ public class CepDTO {
 
     private String cep;
     private String logradouro;
+    private String complemento;
     private String bairro;
     private String localidade;
     private String uf;
@@ -15,6 +16,10 @@ public class CepDTO {
 
     public String getLogradouro() {
         return logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
     }
 
     public String getBairro() {
