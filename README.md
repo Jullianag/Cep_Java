@@ -18,11 +18,11 @@ No postman, via requisição GET, coloca-se o número do cep para a resposta exi
 Caso o cep não exista o postman mostra uma mensagem personalizada.
 
 ## Postman
-![Demonstração 1]()
+![Demonstração 1](https://github.com/Jullianag/Cep_Java/blob/main/src/main/resources/assets/ok.png)
 
-![Demonstração 2]()
+![Demonstração 2](https://github.com/Jullianag/Cep_Java/blob/main/src/main/resources/assets/404.png)
 
-![Demonstração 3]()
+![Demonstração 3](https://github.com/Jullianag/Cep_Java/blob/main/src/main/resources/assets/400.png)
 
 # Tecnologias utilizadas
 ## Back end
